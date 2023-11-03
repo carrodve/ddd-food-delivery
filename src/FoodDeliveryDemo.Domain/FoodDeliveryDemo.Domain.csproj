@@ -6,8 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Vehicles\" />
-    <Folder Include="Orders\" />
+    <PackageReference Include="GeoCoordinate.NetCore" Version="1.0.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FoodDeliveryDemo.Core\FoodDeliveryDemo.Core.csproj" />
   </ItemGroup>
 
 </Project>
