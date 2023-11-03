@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>FoodDeliveryDemo</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Orders\" />
+    <Folder Include="Vehicles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FoodDeliveryDemo.Domain\FoodDeliveryDemo.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

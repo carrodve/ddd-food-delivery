@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{72BD8938-38E8-4879-B9AE-B2C76D52831E}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{505D219A-C924-4396-AFFA-9B7285571506}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{E5FF5F34-B56C-4447-891A-AAAB9D65E1C9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDeliveryDemo.Application.Tests", "test\FoodDeliveryDemo.Application.Tests\FoodDeliveryDemo.Application.Tests.csproj", "{747984E6-8AFB-43B6-81B6-6F257E229FD7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDeliveryDemo.Application", "src\FoodDeliveryDemo.Application\FoodDeliveryDemo.Application.csproj", "{101316B9-7112-4509-A04D-A4C21621BA3D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDeliveryDemo.Domain", "src\FoodDeliveryDemo.Domain\FoodDeliveryDemo.Domain.csproj", "{87FA0A0A-55D1-4BFE-B890-C37ECED56079}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDeliveryDemo.EntityFrameworkCore", "src\FoodDeliveryDemo.EntityFrameworkCore\FoodDeliveryDemo.EntityFrameworkCore.csproj", "{217A75ED-3A4F-42C5-BDAE-616E53E1DA8B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDeliveryDemo.HttpApi.Tests", "test\FoodDeliveryDemo.HttpApi.Tests\FoodDeliveryDemo.HttpApi.Tests.csproj", "{59A6EFB8-6724-4D60-B64D-A5D47E3FF167}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDeliveryDemo.Core", "src\FoodDeliveryDemo.Core\FoodDeliveryDemo.Core.csproj", "{41D6F736-F0A4-401C-A257-1173A89035D4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDeliveryDemo.HttpApi", "src\FoodDeliveryDemo.HttpApi\FoodDeliveryDemo.HttpApi.csproj", "{57527EC1-831C-403C-81A7-BCAB182A16A7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{747984E6-8AFB-43B6-81B6-6F257E229FD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{747984E6-8AFB-43B6-81B6-6F257E229FD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{747984E6-8AFB-43B6-81B6-6F257E229FD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{747984E6-8AFB-43B6-81B6-6F257E229FD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{101316B9-7112-4509-A04D-A4C21621BA3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{101316B9-7112-4509-A04D-A4C21621BA3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{101316B9-7112-4509-A04D-A4C21621BA3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{101316B9-7112-4509-A04D-A4C21621BA3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87FA0A0A-55D1-4BFE-B890-C37ECED56079}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87FA0A0A-55D1-4BFE-B890-C37ECED56079}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87FA0A0A-55D1-4BFE-B890-C37ECED56079}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87FA0A0A-55D1-4BFE-B890-C37ECED56079}.Release|Any CPU.Build.0 = Release|Any CPU
+		{217A75ED-3A4F-42C5-BDAE-616E53E1DA8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{217A75ED-3A4F-42C5-BDAE-616E53E1DA8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{217A75ED-3A4F-42C5-BDAE-616E53E1DA8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{217A75ED-3A4F-42C5-BDAE-616E53E1DA8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59A6EFB8-6724-4D60-B64D-A5D47E3FF167}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59A6EFB8-6724-4D60-B64D-A5D47E3FF167}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59A6EFB8-6724-4D60-B64D-A5D47E3FF167}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59A6EFB8-6724-4D60-B64D-A5D47E3FF167}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41D6F736-F0A4-401C-A257-1173A89035D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41D6F736-F0A4-401C-A257-1173A89035D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41D6F736-F0A4-401C-A257-1173A89035D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41D6F736-F0A4-401C-A257-1173A89035D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57527EC1-831C-403C-81A7-BCAB182A16A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57527EC1-831C-403C-81A7-BCAB182A16A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57527EC1-831C-403C-81A7-BCAB182A16A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57527EC1-831C-403C-81A7-BCAB182A16A7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{747984E6-8AFB-43B6-81B6-6F257E229FD7} = {E5FF5F34-B56C-4447-891A-AAAB9D65E1C9}
+		{101316B9-7112-4509-A04D-A4C21621BA3D} = {505D219A-C924-4396-AFFA-9B7285571506}
+		{87FA0A0A-55D1-4BFE-B890-C37ECED56079} = {505D219A-C924-4396-AFFA-9B7285571506}
+		{217A75ED-3A4F-42C5-BDAE-616E53E1DA8B} = {505D219A-C924-4396-AFFA-9B7285571506}
+		{59A6EFB8-6724-4D60-B64D-A5D47E3FF167} = {E5FF5F34-B56C-4447-891A-AAAB9D65E1C9}
+		{41D6F736-F0A4-401C-A257-1173A89035D4} = {505D219A-C924-4396-AFFA-9B7285571506}
+		{57527EC1-831C-403C-81A7-BCAB182A16A7} = {505D219A-C924-4396-AFFA-9B7285571506}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {051DEF2A-D304-45D8-A9D6-29332AD449A0}
+	EndGlobalSection
+EndGlobal
