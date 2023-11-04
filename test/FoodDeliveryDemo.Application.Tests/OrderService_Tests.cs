@@ -42,7 +42,7 @@ namespace FoodDeliveryDemo
 
             //Act
 
-            await _orderService.CreateOrderAsync(input);
+            await _orderService.CreateAsync(input);
 
             //Assert
 
@@ -64,7 +64,7 @@ namespace FoodDeliveryDemo
 
             //Act
 
-            var result = await _orderService.UpdateOrderAsync(TestDataBuilder.OrderId1, input);
+            var result = await _orderService.UpdateAsync(TestDataBuilder.OrderId1, input);
 
             //Assert
 
@@ -73,6 +73,23 @@ namespace FoodDeliveryDemo
 
             var updatedOrder = await _orderRepository.GetByIdAsync(TestDataBuilder.OrderId1);
             updatedOrder.DeliveryLocation.ShouldBe(input.DeliveryLocation);
+        }
+
+        [Fact]
+        public async Task DeleteOrderAsync()
+        {
+            //Arrange
+
+            var deletedOrder = await _orderRepository.GetByIdAsync(TestDataBuilder.OrderId1);
+
+            //Act
+
+            await _orderService.DeleteAsync(deletedOrder.Id);
+
+            //Assert
+
+            var findOrder = await _orderRepository.GetByIdAsync(TestDataBuilder.OrderId1);
+            findOrder.ShouldBeNull();
         }
     }
 }

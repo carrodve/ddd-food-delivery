@@ -19,7 +19,7 @@ namespace FoodDeliveryDemo.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateOrderAsync([FromBody] CreateOrderDto input)
         {
-            await _orderService.CreateOrderAsync(input);
+            await _orderService.CreateAsync(input);
             return Ok();
         }
     }

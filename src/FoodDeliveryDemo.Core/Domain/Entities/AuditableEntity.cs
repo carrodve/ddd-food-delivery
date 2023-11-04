@@ -8,8 +8,6 @@ namespace FoodDeliveryDemo.Domain.Entities
 
         public DateTime? ModificationTime { get; set; }
 
-        public bool IsDeleted { get; set; } = false;
-
         protected AuditableEntity()
         {
             CreationTime = DateTime.Now;

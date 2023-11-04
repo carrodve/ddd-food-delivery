@@ -5,8 +5,10 @@ namespace FoodDeliveryDemo.Vehicles
 {
     public interface IVehicleService
     {
-        Task CreateVehicleAsync(CreateVehicleDto input);
+        Task<VehicleDto> GetAsync(int id);
 
-        Task<VehicleDto> UpdateVehicleAsync(int id, UpdateVehicleDto input);
+        Task CreateAsync(CreateVehicleDto input);
+
+        Task<VehicleDto> UpdateAsync(int id, UpdateVehicleDto input);
     }
 }

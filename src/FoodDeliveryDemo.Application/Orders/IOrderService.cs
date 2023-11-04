@@ -6,8 +6,10 @@ namespace FoodDeliveryDemo.Orders
 {
     public interface IOrderService
     {
-        Task CreateOrderAsync(CreateOrderDto input);
+        Task CreateAsync(CreateOrderDto input);
 
-        Task<OrderDto> UpdateOrderAsync(Guid id, UpdateOrderDto input);
+        Task<OrderDto> UpdateAsync(Guid id, UpdateOrderDto input);
+
+        Task DeleteAsync(Guid id);
     }
 }

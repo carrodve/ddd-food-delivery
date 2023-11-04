@@ -1,10 +1,8 @@
 ﻿using FoodDeliveryDemo.Configuration;
 using FoodDeliveryDemo.Domain.Entities;
 using FoodDeliveryDemo.Vehicles;
-using System.Collections.Generic;
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
 
 namespace FoodDeliveryDemo.Orders
 {

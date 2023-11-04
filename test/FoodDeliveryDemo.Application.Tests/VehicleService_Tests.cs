@@ -1,10 +1,8 @@
 ﻿using FoodDeliveryDemo.Configuration;
-using FoodDeliveryDemo.History;
 using FoodDeliveryDemo.Vehicles;
 using FoodDeliveryDemo.Vehicles.Dtos;
 using Microsoft.Extensions.DependencyInjection;
 using Shouldly;
-using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
@@ -25,6 +23,20 @@ namespace FoodDeliveryDemo
         }
 
         [Fact]
+        public async Task GetAsync()
+        {
+            //Act
+
+            var result = await _vehicleService.GetAsync(2);
+
+            //Assert
+
+            result.Id.ShouldBe(2);
+            result.CurrentLocation.ShouldBe(TestDataBuilder.VehicleCurrentLocation2);
+        }
+
+
+        [Fact]
         public async Task CreateVehicleAsync()
         {
             //Arrange
@@ -37,7 +49,7 @@ namespace FoodDeliveryDemo
 
             //Act
 
-            await _vehicleService.CreateVehicleAsync(input);
+            await _vehicleService.CreateAsync(input);
 
             //Assert
 
@@ -48,6 +60,8 @@ namespace FoodDeliveryDemo
         [Fact]
         public async Task UpdateVehicleAsync()
         {
+            //Arrange
+
             var input = new UpdateVehicleDto
             {
                 CurrentLocation = TestDataBuilder.VehicleCurrentLocation1
@@ -55,7 +69,7 @@ namespace FoodDeliveryDemo
 
             //Act
 
-            var result = await _vehicleService.UpdateVehicleAsync(1, input);
+            var result = await _vehicleService.UpdateAsync(1, input);
 
             //Assert
 

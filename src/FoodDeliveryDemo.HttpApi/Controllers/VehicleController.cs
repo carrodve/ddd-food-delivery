@@ -19,7 +19,7 @@ namespace FoodDeliveryDemo.Controllers
         [HttpPost]
         public Task CreateVehicleAsync([FromBody] CreateVehicleDto input)
         {
-            return _vehicleService.CreateVehicleAsync(input);
+            return _vehicleService.CreateAsync(input);
         }
     }
 }

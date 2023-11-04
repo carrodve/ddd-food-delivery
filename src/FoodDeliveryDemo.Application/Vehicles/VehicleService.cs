@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
 using FoodDeliveryDemo.Configuration;
-using FoodDeliveryDemo.Orders.Dtos;
-using FoodDeliveryDemo.Orders;
-using FoodDeliveryDemo.Vehicles.Dtos;
-using System.Threading.Tasks;
-using System;
 using FoodDeliveryDemo.History;
+using FoodDeliveryDemo.Vehicles.Dtos;
+using System;
+using System.Threading.Tasks;
 
 namespace FoodDeliveryDemo.Vehicles
 {
@@ -28,13 +26,19 @@ namespace FoodDeliveryDemo.Vehicles
             _objectMapper = objectMapper;
         }
 
-        public async Task CreateVehicleAsync(CreateVehicleDto input)
+        public async Task<VehicleDto> GetAsync(int id)
+        {
+            var vehicle = await _vehicleRepository.GetByIdAsync(id);
+            return _objectMapper.Map<Vehicle, VehicleDto>(vehicle);
+        }
+
+        public async Task CreateAsync(CreateVehicleDto input)
         {
             var vehicleEntity = _objectMapper.Map<Vehicle>(input);
             await _vehicleRepository.InsertAsync(vehicleEntity);
         }
 
-        public async Task<VehicleDto> UpdateVehicleAsync(int id, UpdateVehicleDto input)
+        public async Task<VehicleDto> UpdateAsync(int id, UpdateVehicleDto input)
         {
             var vehicle = await _vehicleRepository.GetByIdAsync(id);
 
