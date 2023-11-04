@@ -5,18 +5,16 @@ using System.Threading.Tasks;
 
 namespace FoodDeliveryDemo.Orders
 {
-    public class OrderService : IOrderService
+    public class OrderService : FoodDeliveryDemoServiceBase, IOrderService
     {
         private readonly IOrderRepository _orderRepository;
-
-        private readonly IMapper _objectMapper;
 
         public OrderService(
             IOrderRepository orderRepository,
             IMapper objectMapper)
+            : base(objectMapper)
         {
             _orderRepository = orderRepository;
-            _objectMapper = objectMapper;
         }
 
         public async Task<GetOrderAndVehicleLocationDto> GetOrderAndVehicleLocationByIdAsync(Guid id)
@@ -36,9 +34,9 @@ namespace FoodDeliveryDemo.Orders
             return output;
         }
 
-        public async Task CreateAsync(CreateOrderDto input)
+        public async Task CreateOrderAsync(CreateOrderDto input)
         {
-            var orderEntity = _objectMapper.Map<Order>(input);
+            var orderEntity = ObjectMapper.Map<Order>(input);
             await _orderRepository.InsertAsync(orderEntity);
         }
 
@@ -52,10 +50,10 @@ namespace FoodDeliveryDemo.Orders
 
             await _orderRepository.UpdateAsync(order);
 
-            return _objectMapper.Map<Order, OrderDto>(order);
+            return ObjectMapper.Map<Order, OrderDto>(order);
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteOrderAsync(Guid id)
         {
             await _orderRepository.DeleteAsync(id);
         }

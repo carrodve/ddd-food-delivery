@@ -17,11 +17,9 @@ namespace FoodDeliveryDemo.EntityFrameworkCore.Repositories
 
         public async Task<Order> GetOrderWithVehicleAsync(Guid id)
         {
-            var result = await DbContext.Orders
+            return await DbContext.Orders
                 .Include(o => o.Vehicle)
                 .FirstOrDefaultAsync();
-
-            return result;
         }
     }
 }

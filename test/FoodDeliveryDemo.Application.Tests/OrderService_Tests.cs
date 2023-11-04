@@ -1,7 +1,5 @@
-﻿using FoodDeliveryDemo.Configuration;
-using FoodDeliveryDemo.Orders;
+﻿using FoodDeliveryDemo.Orders;
 using FoodDeliveryDemo.Orders.Dtos;
-using FoodDeliveryDemo.Vehicles;
 using Microsoft.Extensions.DependencyInjection;
 using Shouldly;
 using System;
@@ -52,7 +50,7 @@ namespace FoodDeliveryDemo
 
             //Act
 
-            await _orderService.CreateAsync(input);
+            await _orderService.CreateOrderAsync(input);
 
             //Assert
 
@@ -95,7 +93,7 @@ namespace FoodDeliveryDemo
 
             //Act
 
-            await _orderService.DeleteAsync(deletedOrder.Id);
+            await _orderService.DeleteOrderAsync(deletedOrder.Id);
 
             //Assert
 

@@ -1,11 +1,7 @@
 ﻿using FoodDeliveryDemo.Domain.Entities;
 using FoodDeliveryDemo.Exceptions;
-using FoodDeliveryDemo.Vehicles;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace FoodDeliveryDemo.EntityFrameworkCore.Repositories
@@ -59,18 +55,6 @@ namespace FoodDeliveryDemo.EntityFrameworkCore.Repositories
         public virtual async Task<List<TEntity>> GetAllListAsync()
         {
             return await DbContext.Set<TEntity>().ToListAsync();
-        }
-
-        public virtual async Task<IQueryable<TEntity>> GetAllAsync(params Expression<Func<TEntity, object>>[] includes)
-        {
-            IQueryable<TEntity> query = DbContext.Set<TEntity>();
-
-            if (includes != null)
-            {
-                query = includes.Aggregate(query, (current, include) => current.Include(include));
-            }
-
-            return await Task.FromResult(query);
         }
     }
 }

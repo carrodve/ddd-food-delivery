@@ -20,7 +20,7 @@ namespace FoodDeliveryDemo.Controllers
         [HttpPost("createOrder")]
         public async Task<IActionResult> CreateOrderAsync([FromBody] CreateOrderDto input)
         {
-            await _orderService.CreateAsync(input);
+            await _orderService.CreateOrderAsync(input);
             return Ok();
         }
 
@@ -34,7 +34,7 @@ namespace FoodDeliveryDemo.Controllers
         [HttpPost("deleteOrder")]
         public async Task<IActionResult> DeleteOrderAsync(Guid id)
         {
-            await _orderService.DeleteAsync(id);
+            await _orderService.DeleteOrderAsync(id);
             return Ok();
         }
 

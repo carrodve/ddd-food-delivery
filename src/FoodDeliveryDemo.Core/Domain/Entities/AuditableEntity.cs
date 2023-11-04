@@ -2,6 +2,10 @@
 
 namespace FoodDeliveryDemo.Domain.Entities
 {
+    public abstract class AuditableEntity : AuditableEntity<Guid>
+    {
+    }
+
     public abstract class AuditableEntity<TPrimaryKey> : Entity<TPrimaryKey>
     {
         public DateTime CreationTime { get; set; }
@@ -12,9 +16,5 @@ namespace FoodDeliveryDemo.Domain.Entities
         {
             CreationTime = DateTime.Now;
         }
-    }
-
-    public abstract class AuditableEntity : AuditableEntity<Guid>
-    {
     }
 }

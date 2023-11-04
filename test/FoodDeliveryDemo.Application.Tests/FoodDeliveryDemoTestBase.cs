@@ -47,13 +47,12 @@ namespace FoodDeliveryDemo
                 mc.AddProfile(new VehicleMapProfile());
             });
 
-            IMapper mapper = mappingConfig.CreateMapper();
-            services.AddSingleton(mapper);
+            services.AddSingleton(mappingConfig.CreateMapper());
 
             var builder = new DbContextOptionsBuilder<FoodDeliveryDemoDbContext>();
             var options = builder.UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
-
             services.AddScoped(_ => new FoodDeliveryDemoDbContext(options));
+
             services.AddScoped<TestDataBuilder>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IVehicleService, VehicleService>();

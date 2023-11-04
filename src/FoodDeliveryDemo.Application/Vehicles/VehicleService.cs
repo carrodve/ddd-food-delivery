@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FoodDeliveryDemo.Vehicles
 {
-    public class VehicleService : IVehicleService
+    public class VehicleService : FoodDeliveryDemoServiceBase, IVehicleService
     {
         private readonly IVehicleRepository _vehicleRepository;
 
@@ -16,25 +16,22 @@ namespace FoodDeliveryDemo.Vehicles
 
         private readonly IOrderRepository _orderRepository;
 
-        private readonly IMapper _objectMapper;
-
         public VehicleService(
             IVehicleRepository vehicleRepository,
             IVehicleLocationHistoryRepository vehicleLocationHistoryRepository,
             IOrderRepository orderRepository,
-            IMapper objectMapper
-            )
+            IMapper objectMapper)
+            : base(objectMapper)
         {
             _vehicleRepository = vehicleRepository;
             _vehicleLocationHistoryRepository = vehicleLocationHistoryRepository;
             _orderRepository = orderRepository;
-            _objectMapper = objectMapper;
         }
 
         public async Task<VehicleDto> GetCurrentLocationByIdAsync(int id)
         {
             var vehicle = await _vehicleRepository.GetByIdAsync(id);
-            return _objectMapper.Map<Vehicle, VehicleDto>(vehicle);
+            return ObjectMapper.Map<Vehicle, VehicleDto>(vehicle);
         }
 
         public async Task AddOrderAsync(int vehicleId, Guid orderId)
@@ -61,9 +58,9 @@ namespace FoodDeliveryDemo.Vehicles
             });
         }
 
-        public async Task CreateAsync(CreateVehicleDto input)
+        public async Task CreateVehicleAsync(CreateVehicleDto input)
         {
-            var vehicleEntity = _objectMapper.Map<Vehicle>(input);
+            var vehicleEntity = ObjectMapper.Map<Vehicle>(input);
             await _vehicleRepository.InsertAsync(vehicleEntity);
         }
 
@@ -84,7 +81,7 @@ namespace FoodDeliveryDemo.Vehicles
 
             await _vehicleRepository.UpdateAsync(vehicle);
 
-            return _objectMapper.Map<Vehicle, VehicleDto>(vehicle);
+            return ObjectMapper.Map<Vehicle, VehicleDto>(vehicle);
         }
 
         private async Task UpdateVehicleOrdersAsync(int vehicleId, Action<Vehicle> updateAction)

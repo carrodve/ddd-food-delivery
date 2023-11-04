@@ -12,7 +12,7 @@ namespace FoodDeliveryDemo.Vehicles
 
         Task<VehicleDto> GetCurrentLocationByIdAsync(int id);
 
-        Task CreateAsync(CreateVehicleDto input);
+        Task CreateVehicleAsync(CreateVehicleDto input);
 
         Task<VehicleDto> UpdateCurrentLocationAsync(int id, UpdateVehicleDto input);
     }

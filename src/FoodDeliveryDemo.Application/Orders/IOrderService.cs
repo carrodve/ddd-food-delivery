@@ -8,10 +8,10 @@ namespace FoodDeliveryDemo.Orders
     {
         Task<GetOrderAndVehicleLocationDto> GetOrderAndVehicleLocationByIdAsync(Guid id);
 
-        Task CreateAsync(CreateOrderDto input);
+        Task CreateOrderAsync(CreateOrderDto input);
 
         Task<OrderDto> UpdateDeliveryLocationAsync(Guid id, UpdateOrderDeliveryLocationDto input);
 
-        Task DeleteAsync(Guid id);
+        Task DeleteOrderAsync(Guid id);
     }
 }

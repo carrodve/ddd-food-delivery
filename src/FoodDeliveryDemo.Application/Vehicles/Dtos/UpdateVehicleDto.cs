@@ -1,6 +1,9 @@
-﻿namespace FoodDeliveryDemo.Vehicles.Dtos
+﻿using FoodDeliveryDemo.Configuration;
+
+namespace FoodDeliveryDemo.Vehicles.Dtos
 {
-    public class UpdateVehicleDto : CreateOrUpdateVehicleDto
+    public class UpdateVehicleDto
     {
+        public GeoCoordinate CurrentLocation { get; set; }
     }
 }

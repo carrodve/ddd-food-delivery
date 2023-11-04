@@ -78,7 +78,7 @@ namespace FoodDeliveryDemo
 
             //Act
 
-            await _vehicleService.CreateAsync(input);
+            await _vehicleService.CreateVehicleAsync(input);
 
             //Assert
 
