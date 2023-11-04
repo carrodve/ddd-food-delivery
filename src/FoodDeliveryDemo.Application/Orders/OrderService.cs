@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using FoodDeliveryDemo.Exceptions;
 using FoodDeliveryDemo.Orders.Dtos;
-using FoodDeliveryDemo.Vehicles.Dtos;
 using System;
 using System.Threading.Tasks;
 
@@ -24,11 +22,7 @@ namespace FoodDeliveryDemo.Orders
         public async Task<GetOrderAndVehicleLocationDto> GetOrderAndVehicleLocationByIdAsync(Guid id)
         {
             var order = await _orderRepository.GetByIdAsync(id);
-            if (order == null)
-            {
-                throw new EntityNotFoundException(nameof(Order), id);
-            }
-
+            
             var output = new GetOrderAndVehicleLocationDto()
             {
                 DeliveryLocation = new Configuration.GeoCoordinate(order.Latitude, order.Longitude),
@@ -51,11 +45,6 @@ namespace FoodDeliveryDemo.Orders
         public async Task<OrderDto> UpdateDeliveryLocationAsync(Guid id, UpdateOrderDeliveryLocationDto input)
         {
             var order = await _orderRepository.GetByIdAsync(id);
-
-            if (order == null)
-            {
-                throw new EntityNotFoundException(nameof(Order), id);
-            }
 
             order.Latitude = input.DeliveryLocation.Latitude;
             order.Longitude = input.DeliveryLocation.Longitude;

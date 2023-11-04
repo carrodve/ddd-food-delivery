@@ -17,13 +17,6 @@ namespace FoodDeliveryDemo.EntityFrameworkCore.Configuration
             {
                 o.HasKey(v => v.Id);
             });
-
-
-           // modelBuilder.Entity<Order>()
-           //.HasOne(o => o.Vehicle) // Propiedad de navegación hacia Vehicle
-           //.WithMany()
-           //.IsRequired(false) // Opcional si no todos los pedidos están asociados a un vehículo
-           //.OnDelete(DeleteBehavior.Cascade); // Habilita la eliminación en cascada
         }
     }
 }

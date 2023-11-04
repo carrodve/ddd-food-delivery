@@ -8,7 +8,7 @@ using Xunit;
 
 namespace FoodDeliveryDemo
 {
-    public class OrderControllerTests
+    public class OrderController_Tests
     {
         [Fact]
         public async Task CreateOrderAsync()
@@ -29,6 +29,61 @@ namespace FoodDeliveryDemo
             // Act
 
             var result = await controller.CreateOrderAsync(input);
+
+            // Assert
+
+            Assert.IsType<OkResult>(result);
+        }
+
+        [Fact]
+        public async Task UpdateOrderDeliveryLocationAsync()
+        {
+            // Arrange
+
+            var orderServiceMock = new Mock<IOrderService>();
+            var controller = new OrderController(orderServiceMock.Object);
+            var input = new UpdateOrderDeliveryLocationDto
+            {
+                DeliveryLocation = new GeoCoordinate(37.7749, -122.4194)
+            };
+
+            // Act
+
+            var result = await controller.UpdateOrderDeliveryLocationAsync(Guid.NewGuid(), input);
+
+            // Assert
+
+            Assert.IsType<OkResult>(result);
+        }
+
+        [Fact]
+        public async Task DeleteOrderAsync()
+        {
+            // Arrange
+
+            var orderServiceMock = new Mock<IOrderService>();
+            var controller = new OrderController(orderServiceMock.Object);
+
+            // Act
+
+            var result = await controller.DeleteOrderAsync(Guid.NewGuid());
+
+            // Assert
+
+            Assert.IsType<OkResult>(result);
+        }
+
+        [Fact]
+        public async Task GetOrderAndVehicleLocationByIdAsync()
+        {
+            // Arrange
+
+            var orderServiceMock = new Mock<IOrderService>();
+            var controller = new OrderController(orderServiceMock.Object);
+
+            // Act
+
+            var result = await controller.GetOrderAndVehicleLocationByIdAsync(Guid.NewGuid());
 
             // Assert
 

@@ -51,6 +51,11 @@ namespace FoodDeliveryDemo.EntityFrameworkCore.Repositories
             return entity;
         }
 
+        public virtual async Task<TEntity> FindByIdAsync(TPrimaryKey id)
+        {
+            return await DbContext.Set<TEntity>().FindAsync(id);
+        }
+
         public virtual async Task<List<TEntity>> GetAllListAsync()
         {
             return await DbContext.Set<TEntity>().ToListAsync();

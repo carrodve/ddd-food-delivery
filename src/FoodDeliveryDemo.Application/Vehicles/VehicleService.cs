@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using FoodDeliveryDemo.Exceptions;
 using FoodDeliveryDemo.History;
 using FoodDeliveryDemo.Orders;
 using FoodDeliveryDemo.Vehicles.Dtos;
@@ -38,39 +37,10 @@ namespace FoodDeliveryDemo.Vehicles
             return _objectMapper.Map<Vehicle, VehicleDto>(vehicle);
         }
 
-        //public async Task AddOrderAsync(int vehicleId, Guid orderId)
-        //{
-        //    var vehicle = await _vehicleRepository.GetByIdAsync(vehicleId);
-        //    var order = await _orderRepository.GetByIdAsync(orderId);
-
-        //    if (vehicle.Orders == null || 
-        //        vehicle.Orders.Any(o => o.Id == orderId))
-        //    {
-        //        return;
-        //    }
-
-        //    vehicle.Orders.Add(order);
-        //    await _vehicleRepository.UpdateAsync(vehicle);
-        //}
-
-        //public async Task DeleteOrderAsync(int vehicleId, Guid orderId)
-        //{
-        //    var vehicle = await _vehicleRepository.GetByIdAsync(vehicleId);
-        //    var order = await _orderRepository.GetByIdAsync(orderId);
-
-        //    if (vehicle.Orders == null)
-        //    {
-        //        return;
-        //    }
-
-        //    vehicle.Orders.Remove(order);
-        //    await _vehicleRepository.UpdateAsync(vehicle);
-        //}
-
         public async Task AddOrderAsync(int vehicleId, Guid orderId)
         {
             var order = await _orderRepository.GetByIdAsync(orderId);
-            await UpdateVehicleOrdersAsync(vehicleId, orderId, vehicle =>
+            await UpdateVehicleOrdersAsync(vehicleId, vehicle =>
             {
                 if (!vehicle.Orders.Any(o => o.Id == orderId))
                 {
@@ -81,7 +51,7 @@ namespace FoodDeliveryDemo.Vehicles
 
         public async Task DeleteOrderAsync(int vehicleId, Guid orderId)
         {
-            await UpdateVehicleOrdersAsync(vehicleId, orderId, vehicle =>
+            await UpdateVehicleOrdersAsync(vehicleId, vehicle =>
             {
                 var orderToRemove = vehicle.Orders.FirstOrDefault(o => o.Id == orderId);
                 if (orderToRemove != null)
@@ -101,11 +71,6 @@ namespace FoodDeliveryDemo.Vehicles
         {
             var vehicle = await _vehicleRepository.GetByIdAsync(id);
 
-            if (vehicle == null)
-            {
-                throw new EntityNotFoundException(nameof(Vehicle), id);
-            }
-
             await _vehicleLocationHistoryRepository.InsertAsync(new VehicleLocationHistory()
             {
                 VehicleId = vehicle.Id,
@@ -122,7 +87,7 @@ namespace FoodDeliveryDemo.Vehicles
             return _objectMapper.Map<Vehicle, VehicleDto>(vehicle);
         }
 
-        private async Task UpdateVehicleOrdersAsync(int vehicleId, Guid orderId, Action<Vehicle> updateAction)
+        private async Task UpdateVehicleOrdersAsync(int vehicleId, Action<Vehicle> updateAction)
         {
             var vehicle = await _vehicleRepository.GetByIdAsync(vehicleId);
 
@@ -132,8 +97,6 @@ namespace FoodDeliveryDemo.Vehicles
             }
 
             updateAction(vehicle);
-
-            await _vehicleRepository.UpdateAsync(vehicle);
         }
     }
 }

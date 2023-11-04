@@ -99,7 +99,7 @@ namespace FoodDeliveryDemo
 
             //Assert
 
-            var findOrder = await _orderRepository.GetByIdAsync(TestDataBuilder.OrderId1);
+            var findOrder = await _orderRepository.FindByIdAsync(TestDataBuilder.OrderId1);
             findOrder.ShouldBeNull();
         }
     }
