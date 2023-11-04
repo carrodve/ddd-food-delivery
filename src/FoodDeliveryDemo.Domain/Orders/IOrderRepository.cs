@@ -1,16 +1,15 @@
-﻿using GeoCoordinatePortable;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace FoodDeliveryDemo.Orders
 {
     public interface IOrderRepository
     {
-        Task AddOrderAsync(Order order);
+        Task InsertAsync(Order entity);
 
-        Task DeleteOrderAsync(int orderId);
+        Task<Order> GetByIdAsync(Guid id);
 
-        Task UpdateOrderLocationAsync(int orderId, GeoCoordinate newLocation);
-
-        Task<Order> GetOrderLocationByOrderIdAsync(int orderId);
+        Task<List<Order>> GetAllAsync();
     }
 }

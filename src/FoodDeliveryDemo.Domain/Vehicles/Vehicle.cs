@@ -1,9 +1,5 @@
-﻿using FoodDeliveryDemo.Domain.Entities;
-using FoodDeliveryDemo.History;
-using GeoCoordinatePortable;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using FoodDeliveryDemo.Configuration;
+using FoodDeliveryDemo.Domain.Entities;
 
 namespace FoodDeliveryDemo.Vehicles
 {
@@ -17,6 +13,6 @@ namespace FoodDeliveryDemo.Vehicles
         /// <summary>
         /// Historial de ubicaciones
         /// </summary>
-        public List<VehicleLocationHistory> LocationHistory { get; set; }
+       //public List<VehicleLocationHistory> LocationHistory { get; set; }
     }
 }

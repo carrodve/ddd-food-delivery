@@ -1,14 +1,17 @@
-﻿using GeoCoordinatePortable;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace FoodDeliveryDemo.Vehicles
 {
     public interface IVehicleRepository
     {
-        Task UpdateVehicleLocationAsync(int vehicleId, GeoCoordinate newLocation);
+        Task InsertAsync(Vehicle entity);
 
-        Task<GeoCoordinate> GetVehicleLocationAsync(int vehicleId);
+        Task<Vehicle> GetByIdAsync(int id);
 
-        Task AddVehicleLocationHistoryAsync(int vehicleId, GeoCoordinate location);
+        //Task UpdateVehicleLocationAsync(int vehicleId, GeoCoordinate newLocation);
+
+        //Task<GeoCoordinate> GetVehicleLocationAsync(int vehicleId);
+
+        //Task AddVehicleLocationHistoryAsync(int vehicleId, GeoCoordinate location);
     }
 }

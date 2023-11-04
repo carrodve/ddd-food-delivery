@@ -1,6 +1,6 @@
-﻿using FoodDeliveryDemo.Domain.Entities;
+﻿using FoodDeliveryDemo.Configuration;
+using FoodDeliveryDemo.Domain.Entities;
 using FoodDeliveryDemo.Vehicles;
-using GeoCoordinatePortable;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -11,16 +11,6 @@ namespace FoodDeliveryDemo.Orders
     /// </summary>
     public class Order : AuditableEntity
     {
-        /// <summary>
-        /// Representa la relación 1:N con vehiculo
-        /// </summary>
-        public Guid VehicleId { get; set; }
-
-        /// <summary>
-        /// Objeto de la relación
-        /// </summary>
-        public Vehicle Vehicle { get; set; }
-
         /// <summary>
         /// Nombre del cliente
         /// </summary>
@@ -42,5 +32,15 @@ namespace FoodDeliveryDemo.Orders
         /// Posición del pedido que representa la ubicación de entrega
         /// </summary>
         public GeoCoordinate DeliveryLocation { get; set; }
+
+        /// <summary>
+        /// Representa la relación 1:N con vehiculo
+        /// </summary>
+        public int VehicleId { get; set; }
+
+        /// <summary>
+        /// Objeto de la relación
+        /// </summary>
+        public Vehicle Vehicle { get; set; }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using FoodDeliveryDemo.Domain.Entities;
 using FoodDeliveryDemo.Vehicles;
-using GeoCoordinatePortable;
 using System;
 
 namespace FoodDeliveryDemo.History
@@ -13,6 +12,6 @@ namespace FoodDeliveryDemo.History
 
         public DateTime CreationTime { get; set; }
         
-        public GeoCoordinate Location { get; set; }
+        //public GeoCoordinate Location { get; set; }
     }
 }
