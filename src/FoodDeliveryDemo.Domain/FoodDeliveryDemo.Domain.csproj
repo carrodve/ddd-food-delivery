@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>FoodDeliveryDemo</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FoodDeliveryDemo.Core\FoodDeliveryDemo.Core.csproj" />
+  </ItemGroup>
+
+</Project>
