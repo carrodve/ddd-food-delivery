@@ -1,7 +1,6 @@
 ﻿using FoodDeliveryDemo.Orders;
 using FoodDeliveryDemo.Vehicles;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace FoodDeliveryDemo.EntityFrameworkCore.Configuration
 {
@@ -17,7 +16,6 @@ namespace FoodDeliveryDemo.EntityFrameworkCore.Configuration
             modelBuilder.Entity<Order>(o =>
             {
                 o.HasKey(v => v.Id);
-                o.Property<Guid>("Id").ValueGeneratedOnAdd();
             });
         }
     }

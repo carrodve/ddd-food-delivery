@@ -7,6 +7,7 @@ namespace FoodDeliveryDemo.Orders.Dtos
         public OrderMapProfile()
         {
             CreateMap<CreateOrderDto, Order>();
+            CreateMap<Order, OrderDto>();
         }
     }
 }

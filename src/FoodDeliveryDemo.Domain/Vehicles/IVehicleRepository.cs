@@ -6,12 +6,8 @@ namespace FoodDeliveryDemo.Vehicles
     {
         Task InsertAsync(Vehicle entity);
 
+        Task UpdateAsync(Vehicle entity);
+
         Task<Vehicle> GetByIdAsync(int id);
-
-        //Task UpdateVehicleLocationAsync(int vehicleId, GeoCoordinate newLocation);
-
-        //Task<GeoCoordinate> GetVehicleLocationAsync(int vehicleId);
-
-        //Task AddVehicleLocationHistoryAsync(int vehicleId, GeoCoordinate location);
     }
 }

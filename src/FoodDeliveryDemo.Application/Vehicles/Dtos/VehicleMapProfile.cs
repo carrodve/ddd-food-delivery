@@ -7,6 +7,7 @@ namespace FoodDeliveryDemo.Vehicles.Dtos
         public VehicleMapProfile()
         {
             CreateMap<CreateVehicleDto, Vehicle>();
+            CreateMap<Vehicle, VehicleDto>();
         }
     }
 }

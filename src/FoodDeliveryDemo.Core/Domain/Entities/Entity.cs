@@ -7,7 +7,7 @@ namespace FoodDeliveryDemo.Domain.Entities
     /// primaria que utilizará.
     /// </summary>
     /// <typeparam name="TPrimaryKey">Define el tipo de dato de la clave primaria</typeparam>
-    public abstract class Entity<TPrimaryKey>
+    public abstract class Entity<TPrimaryKey> : IEntity<TPrimaryKey>
     {
         public virtual TPrimaryKey Id { get; set; }
     }
@@ -15,7 +15,7 @@ namespace FoodDeliveryDemo.Domain.Entities
     /// <summary>
     /// Clase especializada con el tipo de clave primaria Guid por defecto.
     /// </summary>
-    public abstract class Entity : Entity<Guid>
+    public abstract class Entity : Entity<Guid>, IEntity
     {
     }
 }

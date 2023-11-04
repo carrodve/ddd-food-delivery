@@ -1,6 +1,8 @@
-﻿namespace FoodDeliveryDemo.Configuration
+﻿using System;
+
+namespace FoodDeliveryDemo.Configuration
 {
-    public struct GeoCoordinate
+    public struct GeoCoordinate : ICloneable
     {
         public double Latitude { get; set; }
 
@@ -10,6 +12,11 @@
         {
             Latitude = latitude;
             Longitude = longitude;
+        }
+
+        public object Clone()
+        {
+            return new GeoCoordinate(Latitude, Longitude);
         }
     }
 }

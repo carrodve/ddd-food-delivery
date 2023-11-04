@@ -16,7 +16,7 @@ namespace FoodDeliveryDemo.Domain.Entities
         }
     }
 
-    public abstract class AuditableEntity : Entity<Guid>
+    public abstract class AuditableEntity : AuditableEntity<Guid>
     {
     }
 }

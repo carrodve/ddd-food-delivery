@@ -8,6 +8,10 @@ namespace FoodDeliveryDemo.Orders
     {
         Task InsertAsync(Order entity);
 
+        Task UpdateAsync(Order entity);
+
+        Task DeleteAsync(Guid id);
+
         Task<Order> GetByIdAsync(Guid id);
 
         Task<List<Order>> GetAllAsync();

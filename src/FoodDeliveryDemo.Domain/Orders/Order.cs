@@ -1,13 +1,15 @@
 ﻿using FoodDeliveryDemo.Configuration;
 using FoodDeliveryDemo.Domain.Entities;
 using FoodDeliveryDemo.Vehicles;
+using System.Collections.Generic;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
 
 namespace FoodDeliveryDemo.Orders
 {
     /// <summary>
-    /// Entidad pedido auditable con identificador único y relacionada con vehículos.
+    /// Entidad pedido auditable con identificador único de tipo Guid y relacionada con vehículos.
     /// </summary>
     public class Order : AuditableEntity
     {
@@ -42,5 +44,18 @@ namespace FoodDeliveryDemo.Orders
         /// Objeto de la relación
         /// </summary>
         public Vehicle Vehicle { get; set; }
+
+        public Order()
+        {
+
+        }
+
+        public Order(Guid id, string customer, string comments, GeoCoordinate deliveryLocation)
+        {
+            Id = id;
+            Customer = customer;
+            Comments = comments;
+            DeliveryLocation = deliveryLocation;
+        }
     }
 }

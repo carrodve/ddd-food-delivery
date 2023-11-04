@@ -27,10 +27,9 @@ namespace FoodDeliveryDemo
         }
 
         [Fact]
-        public async Task CreateAsync()
+        public async Task CreateOrderAsync()
         {
             //Arrange
-            await _vehicleRepository.InsertAsync(new Vehicle() { Id = 1 });
 
             var input = new CreateOrderDto
             {
@@ -38,7 +37,7 @@ namespace FoodDeliveryDemo
                 Customer = "test",
                 Comments = "none",
                 State = OrderState.Created,
-                DeliveryLocation = new GeoCoordinate(37.7749, -122.4194)
+                DeliveryLocation = TestDataBuilder.OrderDeliveryLocation1
             };
 
             //Act
@@ -49,10 +48,31 @@ namespace FoodDeliveryDemo
 
             var orders = await _orderRepository.GetAllAsync();
 
-            var orderEntity = orders.FirstOrDefault();
+            var orderEntity = orders.FirstOrDefault(x => x.VehicleId == 1 && x.State == OrderState.Created);
 
             orderEntity.Id.ShouldNotBe(Guid.Empty);
             orderEntity.Customer.ShouldBe("test");
+        }
+
+        [Fact]
+        public async Task UpdateOrderAsync()
+        {
+            var input = new UpdateOrderDto
+            {
+                DeliveryLocation = new GeoCoordinate(40.7128, -74.0060)
+            };
+
+            //Act
+
+            var result = await _orderService.UpdateOrderAsync(TestDataBuilder.OrderId1, input);
+
+            //Assert
+
+            result.Id.ShouldBe(TestDataBuilder.OrderId1);
+            result.DeliveryLocation.ShouldBe(input.DeliveryLocation);
+
+            var updatedOrder = await _orderRepository.GetByIdAsync(TestDataBuilder.OrderId1);
+            updatedOrder.DeliveryLocation.ShouldBe(input.DeliveryLocation);
         }
     }
 }
