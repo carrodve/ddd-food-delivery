@@ -2,8 +2,10 @@
 
 namespace FoodDeliveryDemo.Orders.Dtos
 {
-    public class UpdateOrderDto
+    public class GetOrderAndVehicleLocationDto
     {
         public GeoCoordinate DeliveryLocation { get; set; }
+
+        public GeoCoordinate CurrentLocation { get; set; }
     }
 }

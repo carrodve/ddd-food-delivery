@@ -1,14 +1,19 @@
 ﻿using FoodDeliveryDemo.Vehicles.Dtos;
+using System;
 using System.Threading.Tasks;
 
 namespace FoodDeliveryDemo.Vehicles
 {
     public interface IVehicleService
     {
-        Task<VehicleDto> GetAsync(int id);
+        Task AddOrderAsync(int vehicleId, Guid orderId);
+
+        Task DeleteOrderAsync(int vehicleId, Guid orderId);
+
+        Task<VehicleDto> GetCurrentLocationByIdAsync(int id);
 
         Task CreateAsync(CreateVehicleDto input);
 
-        Task<VehicleDto> UpdateAsync(int id, UpdateVehicleDto input);
+        Task<VehicleDto> UpdateCurrentLocationAsync(int id, UpdateVehicleDto input);
     }
 }

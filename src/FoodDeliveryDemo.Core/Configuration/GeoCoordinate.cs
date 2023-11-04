@@ -2,11 +2,11 @@
 
 namespace FoodDeliveryDemo.Configuration
 {
-    public struct GeoCoordinate : ICloneable
+    public class GeoCoordinate
     {
-        public double Latitude { get; set; }
+        public double Latitude { get; }
 
-        public double Longitude { get; set; }
+        public double Longitude { get; }
 
         public GeoCoordinate(double latitude, double longitude)
         {
@@ -14,9 +14,13 @@ namespace FoodDeliveryDemo.Configuration
             Longitude = longitude;
         }
 
-        public object Clone()
+        public override bool Equals(object obj)
         {
-            return new GeoCoordinate(Latitude, Longitude);
+            if (obj is GeoCoordinate other)
+            {
+                return Latitude == other.Latitude && Longitude == other.Longitude;
+            }
+            return false;
         }
     }
 }

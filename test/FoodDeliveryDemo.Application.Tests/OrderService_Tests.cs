@@ -17,13 +17,23 @@ namespace FoodDeliveryDemo
 
         private readonly IOrderRepository _orderRepository;
 
-        private readonly IVehicleRepository _vehicleRepository;
-
         public OrderService_Tests()
         {
             _orderService = ServiceProvider.GetService<IOrderService>();
             _orderRepository = ServiceProvider.GetService<IOrderRepository>();
-            _vehicleRepository = ServiceProvider.GetService<IVehicleRepository>();
+        }
+
+        [Fact]
+        public async Task GetOrderAndVehicleLocationByIdAsync()
+        {
+            //Act
+
+            var result = await _orderService.GetOrderAndVehicleLocationByIdAsync(TestDataBuilder.OrderId1);
+
+            //Assert
+
+            result.DeliveryLocation.ShouldNotBeNull();
+            result.CurrentLocation.ShouldNotBeNull();
         }
 
         [Fact]
@@ -46,9 +56,9 @@ namespace FoodDeliveryDemo
 
             //Assert
 
-            var orders = await _orderRepository.GetAllAsync();
+            var orders = await _orderRepository.GetAllListAsync();
 
-            var orderEntity = orders.FirstOrDefault(x => x.VehicleId == 1 && x.State == OrderState.Created);
+            var orderEntity = orders.FirstOrDefault(x => x.VehicleId == 1 && x.State == OrderState.Created && x.Customer == "test");
 
             orderEntity.Id.ShouldNotBe(Guid.Empty);
             orderEntity.Customer.ShouldBe("test");
@@ -57,14 +67,14 @@ namespace FoodDeliveryDemo
         [Fact]
         public async Task UpdateOrderAsync()
         {
-            var input = new UpdateOrderDto
+            var input = new UpdateOrderDeliveryLocationDto
             {
-                DeliveryLocation = new GeoCoordinate(40.7128, -74.0060)
+                DeliveryLocation = TestDataBuilder.OrderDeliveryLocation2
             };
 
             //Act
 
-            var result = await _orderService.UpdateAsync(TestDataBuilder.OrderId1, input);
+            var result = await _orderService.UpdateDeliveryLocationAsync(TestDataBuilder.OrderId1, input);
 
             //Assert
 
@@ -72,7 +82,8 @@ namespace FoodDeliveryDemo
             result.DeliveryLocation.ShouldBe(input.DeliveryLocation);
 
             var updatedOrder = await _orderRepository.GetByIdAsync(TestDataBuilder.OrderId1);
-            updatedOrder.DeliveryLocation.ShouldBe(input.DeliveryLocation);
+            updatedOrder.Latitude.ShouldBe(input.DeliveryLocation.Latitude);
+            updatedOrder.Longitude.ShouldBe(input.DeliveryLocation.Longitude);
         }
 
         [Fact]

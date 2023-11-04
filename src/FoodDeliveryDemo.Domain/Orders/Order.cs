@@ -31,12 +31,17 @@ namespace FoodDeliveryDemo.Orders
         /// <summary>
         /// Posición del pedido que representa la ubicación de entrega
         /// </summary>
-        public GeoCoordinate DeliveryLocation { get; set; }
+        public double Latitude { get; set; }
+
+        /// <summary>
+        /// Posición del pedido que representa la ubicación de entrega
+        /// </summary>
+        public double Longitude { get; set; }
 
         /// <summary>
         /// Representa la relación 1:N con vehiculo
         /// </summary>
-        public int VehicleId { get; set; }
+        public int? VehicleId { get; set; }
 
         /// <summary>
         /// Objeto de la relación
@@ -48,12 +53,14 @@ namespace FoodDeliveryDemo.Orders
 
         }
 
-        public Order(Guid id, string customer, string comments, GeoCoordinate deliveryLocation)
+        public Order(Guid id, string customer, string comments, GeoCoordinate deliveryLocation, int? vehicleId = null)
         {
             Id = id;
             Customer = customer;
             Comments = comments;
-            DeliveryLocation = deliveryLocation;
+            Latitude = deliveryLocation.Latitude;
+            Longitude = deliveryLocation.Longitude;
+            VehicleId = vehicleId;
         }
     }
 }

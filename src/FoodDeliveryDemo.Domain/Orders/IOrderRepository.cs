@@ -14,6 +14,8 @@ namespace FoodDeliveryDemo.Orders
 
         Task<Order> GetByIdAsync(Guid id);
 
-        Task<List<Order>> GetAllAsync();
+        Task<Order> GetOrderWithVehicleAsync(Guid id);
+
+        Task<List<Order>> GetAllListAsync();
     }
 }

@@ -1,7 +1,9 @@
 ﻿using FoodDeliveryDemo.Configuration;
 using FoodDeliveryDemo.Domain.Entities;
 using FoodDeliveryDemo.History;
+using FoodDeliveryDemo.Orders;
 using System.Collections.Generic;
+using System.Reflection.Metadata.Ecma335;
 
 namespace FoodDeliveryDemo.Vehicles
 {
@@ -13,12 +15,22 @@ namespace FoodDeliveryDemo.Vehicles
         /// <summary>
         /// Ubicación actual
         /// </summary>
-        public GeoCoordinate CurrentLocation { get; set; }
+        public double Latitude { get; set; }
+
+        /// <summary>
+        /// Ubicación actual
+        /// </summary>
+        public double Longitude { get; set; }
 
         /// <summary>
         /// Historial de ubicaciones
         /// </summary>
         public ICollection<VehicleLocationHistory> LocationHistory { get; set; }
+
+        /// <summary>
+        /// Colección de pedidos de la relación 1:N
+        /// </summary>
+        public ICollection<Order> Orders { get; set; }
 
         public Vehicle()
         { 
@@ -27,7 +39,8 @@ namespace FoodDeliveryDemo.Vehicles
         public Vehicle(int id, GeoCoordinate currentLocation)
         {
             Id = id;
-            CurrentLocation = currentLocation;
+            Latitude = currentLocation.Latitude;
+            Longitude = currentLocation.Longitude;
         }
     }
 }

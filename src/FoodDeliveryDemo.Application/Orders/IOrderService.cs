@@ -6,9 +6,11 @@ namespace FoodDeliveryDemo.Orders
 {
     public interface IOrderService
     {
+        Task<GetOrderAndVehicleLocationDto> GetOrderAndVehicleLocationByIdAsync(Guid id);
+
         Task CreateAsync(CreateOrderDto input);
 
-        Task<OrderDto> UpdateAsync(Guid id, UpdateOrderDto input);
+        Task<OrderDto> UpdateDeliveryLocationAsync(Guid id, UpdateOrderDeliveryLocationDto input);
 
         Task DeleteAsync(Guid id);
     }

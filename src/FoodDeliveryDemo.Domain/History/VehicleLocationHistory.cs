@@ -1,5 +1,4 @@
-﻿using FoodDeliveryDemo.Configuration;
-using FoodDeliveryDemo.Domain.Entities;
+﻿using FoodDeliveryDemo.Domain.Entities;
 using FoodDeliveryDemo.Vehicles;
 using System;
 
@@ -11,9 +10,14 @@ namespace FoodDeliveryDemo.History
     public class VehicleLocationHistory : Entity<int>
     {
         /// <summary>
-        /// Localización
+        /// Latitud
         /// </summary>
-        public GeoCoordinate Location { get; set; }
+        public double Latitude { get; set; }
+
+        /// <summary>
+        /// Longitud
+        /// </summary>
+        public double Longitude { get; set; }
 
         /// <summary>
         /// Representa la relación 1:N con vehiculo

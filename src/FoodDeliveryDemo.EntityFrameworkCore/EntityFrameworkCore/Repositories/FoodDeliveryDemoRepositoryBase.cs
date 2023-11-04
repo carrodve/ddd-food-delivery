@@ -1,29 +1,34 @@
 ﻿using FoodDeliveryDemo.Domain.Entities;
+using FoodDeliveryDemo.Exceptions;
+using FoodDeliveryDemo.Vehicles;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace FoodDeliveryDemo.EntityFrameworkCore.Repositories
 {
     public abstract class FoodDeliveryDemoRepositoryBase<TEntity, TPrimaryKey> where TEntity : class, IEntity<TPrimaryKey>
     {
-        private readonly FoodDeliveryDemoDbContext _dbContext;
+        protected readonly FoodDeliveryDemoDbContext DbContext;
 
         protected FoodDeliveryDemoRepositoryBase(FoodDeliveryDemoDbContext dbContext)
         {
-            _dbContext = dbContext;
+            DbContext = dbContext;
         }
 
         public virtual async Task InsertAsync(TEntity entity)
         {
-            await _dbContext.Set<TEntity>().AddAsync(entity);
-            await _dbContext.SaveChangesAsync();
+            await DbContext.Set<TEntity>().AddAsync(entity);
+            await DbContext.SaveChangesAsync();
         }
 
         public virtual async Task UpdateAsync(TEntity entity)
         {
-            _dbContext.Set<TEntity>().Update(entity);
-            await _dbContext.SaveChangesAsync();
+            DbContext.Set<TEntity>().Update(entity);
+            await DbContext.SaveChangesAsync();
         }
 
         public virtual async Task DeleteAsync(TPrimaryKey id)
@@ -31,18 +36,36 @@ namespace FoodDeliveryDemo.EntityFrameworkCore.Repositories
             TEntity entity = await GetByIdAsync(id);
             if (entity == null) return;
 
-            _dbContext.Set<TEntity>().Remove(entity);
-            await _dbContext.SaveChangesAsync();
+            DbContext.Set<TEntity>().Remove(entity);
+            await DbContext.SaveChangesAsync();
         }
 
         public virtual async Task<TEntity> GetByIdAsync(TPrimaryKey id)
         {
-            return await _dbContext.Set<TEntity>().FindAsync(id);
+            var entity = await DbContext.Set<TEntity>().FindAsync(id);
+            if (entity == null)
+            {
+                throw new EntityNotFoundException(nameof(TEntity), id);
+            }
+
+            return entity;
         }
 
-        public virtual async Task<List<TEntity>> GetAllAsync()
+        public virtual async Task<List<TEntity>> GetAllListAsync()
         {
-            return await _dbContext.Set<TEntity>().ToListAsync();
+            return await DbContext.Set<TEntity>().ToListAsync();
+        }
+
+        public virtual async Task<IQueryable<TEntity>> GetAllAsync(params Expression<Func<TEntity, object>>[] includes)
+        {
+            IQueryable<TEntity> query = DbContext.Set<TEntity>();
+
+            if (includes != null)
+            {
+                query = includes.Aggregate(query, (current, include) => current.Include(include));
+            }
+
+            return await Task.FromResult(query);
         }
     }
 }

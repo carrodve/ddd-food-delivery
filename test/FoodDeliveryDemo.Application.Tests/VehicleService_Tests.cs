@@ -3,6 +3,7 @@ using FoodDeliveryDemo.Vehicles;
 using FoodDeliveryDemo.Vehicles.Dtos;
 using Microsoft.Extensions.DependencyInjection;
 using Shouldly;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
@@ -15,7 +16,6 @@ namespace FoodDeliveryDemo
 
         private readonly IVehicleRepository _vehicleRepository;
 
-
         public VehicleService_Tests()
         {
             _vehicleService = ServiceProvider.GetService<IVehicleService>();
@@ -23,18 +23,47 @@ namespace FoodDeliveryDemo
         }
 
         [Fact]
-        public async Task GetAsync()
+        public async Task AddOrderToVehicle()
         {
             //Act
 
-            var result = await _vehicleService.GetAsync(2);
+            await _vehicleService.AddOrderAsync(1, Guid.Parse(TestDataBuilder.OrderId3.ToString()));
+
+            var vehicle = await _vehicleRepository.GetByIdAsync(1);
+
+            //Assert
+
+            vehicle.Id.ShouldBe(1);
+            vehicle.Orders.Count.ShouldBeGreaterThan(1);
+        }
+
+        [Fact]
+        public async Task DeleteOrderToVehicle()
+        {
+            //Act
+
+            await _vehicleService.DeleteOrderAsync(1, Guid.Parse(TestDataBuilder.OrderId1.ToString()));
+
+            var vehicle = await _vehicleRepository.GetByIdAsync(1);
+
+            //Assert
+
+            vehicle.Id.ShouldBe(1);
+            vehicle.Orders.Count.ShouldBe(0);
+        }
+
+        [Fact]
+        public async Task GetCurrentLocationByIdAsync()
+        {
+            //Act
+
+            var result = await _vehicleService.GetCurrentLocationByIdAsync(2);
 
             //Assert
 
             result.Id.ShouldBe(2);
             result.CurrentLocation.ShouldBe(TestDataBuilder.VehicleCurrentLocation2);
         }
-
 
         [Fact]
         public async Task CreateVehicleAsync()
@@ -58,18 +87,18 @@ namespace FoodDeliveryDemo
         }
 
         [Fact]
-        public async Task UpdateVehicleAsync()
+        public async Task UpdateCurrentLocationAsync()
         {
             //Arrange
 
             var input = new UpdateVehicleDto
             {
-                CurrentLocation = TestDataBuilder.VehicleCurrentLocation1
+                CurrentLocation = TestDataBuilder.VehicleCurrentLocation2
             };
 
             //Act
 
-            var result = await _vehicleService.UpdateAsync(1, input);
+            var result = await _vehicleService.UpdateCurrentLocationAsync(1, input);
 
             //Assert
 
@@ -77,7 +106,8 @@ namespace FoodDeliveryDemo
             result.CurrentLocation.ShouldBe(input.CurrentLocation);
 
             var updatedVehicle = await _vehicleRepository.GetByIdAsync(1);
-            updatedVehicle.CurrentLocation.ShouldBe(input.CurrentLocation);
+            updatedVehicle.Latitude.ShouldBe(input.CurrentLocation.Latitude);
+            updatedVehicle.Longitude.ShouldBe(input.CurrentLocation.Longitude);
             updatedVehicle.LocationHistory.ShouldNotBeNull();
             updatedVehicle.LocationHistory.Any().ShouldBeTrue();
         }
